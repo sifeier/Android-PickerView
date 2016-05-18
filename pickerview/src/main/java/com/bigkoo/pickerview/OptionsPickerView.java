@@ -20,9 +20,28 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
     private OnOptionsSelectListener optionsSelectListener;
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
+
     public OptionsPickerView(Context context) {
         super(context);
-        LayoutInflater.from(context).inflate(R.layout.pickerview_options, contentContainer);
+        init(context, R.layout.pickerview_options);
+    }
+
+    public OptionsPickerView(Context context, boolean asym) {
+        super(context);
+        if(asym) {
+            init(context, R.layout.asym_pickerview_options);
+        } else {
+            init(context, R.layout.pickerview_options);
+        }
+    }
+
+    public OptionsPickerView(Context context, int layoutId) {
+        super(context);
+        init(context, layoutId);
+    }
+
+    public void init(Context context, int layoutId) {
+        LayoutInflater.from(context).inflate(layoutId, contentContainer);
         // -----确定和取消按钮
         btnSubmit = findViewById(R.id.btnSubmit);
         btnSubmit.setTag(TAG_SUBMIT);
@@ -36,6 +55,7 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
         final View optionspicker = findViewById(R.id.optionspicker);
         wheelOptions = new WheelOptions(optionspicker);
     }
+
     public void setPicker(ArrayList<T> optionsItems) {
         wheelOptions.setPicker(optionsItems, null, null, false);
     }

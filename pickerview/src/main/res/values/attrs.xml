@@ -6,9 +6,11 @@
             <enum name="left" value="3"/>
             <enum name="right" value="5"/>
         </attr>
+
         <attr name="textSize" format="dimension"/>
         <attr name="textColorOut" format="color"/>
         <attr name="textColorCenter" format="color"/>
         <attr name="dividerColor" format="color"/>
+        <attr name="customTextSize" format="boolean"/>
     </declare-styleable>
 </resources>

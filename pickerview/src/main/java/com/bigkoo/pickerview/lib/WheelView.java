@@ -61,7 +61,7 @@ public class WheelView extends View {
     int dividerColor;
 
     // 条目间距倍数
-    static final float lineSpacingMultiplier = 1.4F;
+    static final float lineSpacingMultiplier = 1.8F;
     boolean isLoop;
 
     // 第一条线Y坐标值
@@ -103,7 +103,7 @@ public class WheelView extends View {
     private int mGravity = Gravity.CENTER;
     private int drawCenterContentStart = 0;//中间选中文字开始绘制位置
     private int drawOutContentStart = 0;//非中间文字开始绘制位置
-    private static final float SCALECONTENT = 0.8F;//非中间文字则用此控制高度，压扁形成3d错觉
+    private static final float SCALECONTENT = 0.92F;//非中间文字则用此控制高度，压扁形成3d错觉
     private static final float CENTERCONTENTOFFSET = 6;//中间文字文字居中需要此偏移值
     private static final String GETPICKERVIEWTEXT = "getPickerViewText";//反射的方法名
 
@@ -118,7 +118,7 @@ public class WheelView extends View {
         dividerColor = getResources().getColor(R.color.pickerview_wheelview_textcolor_divider);
         //配合customTextSize使用，customTextSize为true才会发挥效果
         textSize = getResources().getDimensionPixelSize(R.dimen.pickerview_textsize);
-        customTextSize = getResources().getBoolean(R.bool.pickerview_customTextSize);
+//        customTextSize = getResources().getBoolean(R.bool.pickerview_customTextSize);
         if(attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.wheelview,0,0);
             mGravity = a.getInt(R.styleable.wheelview_gravity, Gravity.CENTER);
@@ -126,6 +126,7 @@ public class WheelView extends View {
             textColorCenter = a.getColor(R.styleable.wheelview_textColorCenter,textColorCenter);
             dividerColor = a.getColor(R.styleable.wheelview_dividerColor,dividerColor);
             textSize = a.getDimensionPixelOffset(R.styleable.wheelview_textSize,textSize);
+            customTextSize = a.getBoolean(R.styleable.wheelview_customTextSize, false);
         }
         initLoopView(context);
     }
@@ -176,7 +177,7 @@ public class WheelView extends View {
         measureTextWidthHeight();
 
         //最大Text的高度乘间距倍数得到 可见文字实际的总高度，半圆的周长
-        halfCircumference = (int) (itemHeight * (itemsVisible - 1)) ;
+        halfCircumference = (int) (itemHeight * (itemsVisible - 1));
         //整个圆的周长除以PI得到直径，这个直径用作控件的总高度
         measuredHeight = (int) ((halfCircumference * 2) / Math.PI);
         //求出半径
@@ -256,7 +257,7 @@ public class WheelView extends View {
     }
 
     public final void setTextSize(float size) {
-        if (size > 0.0F&&!customTextSize) {
+        if (size > 0.0F && customTextSize) {
             textSize = (int) (context.getResources().getDisplayMetrics().density * size);
             paintOuterText.setTextSize(textSize);
             paintCenterText.setTextSize(textSize);
