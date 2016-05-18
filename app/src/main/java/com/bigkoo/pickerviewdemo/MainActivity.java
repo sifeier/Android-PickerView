@@ -21,9 +21,9 @@ public class MainActivity extends Activity {
     private ArrayList<ProvinceBean> options1Items = new ArrayList<ProvinceBean>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<ArrayList<String>>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<ArrayList<ArrayList<String>>>();
-    private TextView tvTime, tvOptions;
+    private TextView tvTime, tvOptions, tvOptions2;
     TimePickerView pvTime;
-    OptionsPickerView pvOptions;
+    OptionsPickerView pvOptions, singleOptions;
     View vMasker;
 
     @Override
@@ -33,6 +33,8 @@ public class MainActivity extends Activity {
         vMasker=findViewById(R.id.vMasker);
         tvTime=(TextView) findViewById(R.id.tvTime);
         tvOptions=(TextView) findViewById(R.id.tvOptions);
+        tvOptions2=(TextView) findViewById(R.id.tvOptions2);
+
         //时间选择器
         pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
         //控制时间范围
@@ -60,6 +62,7 @@ public class MainActivity extends Activity {
 
         //选项选择器
         pvOptions = new OptionsPickerView(this);
+        singleOptions = new OptionsPickerView(this, true);
 
         //选项1
         options1Items.add(new ProvinceBean(0,"广东","广东省，以岭南东道、广南东路得名","其他数据"));
@@ -68,7 +71,7 @@ public class MainActivity extends Activity {
 
         //选项2
         ArrayList<String> options2Items_01=new ArrayList<String>();
-        options2Items_01.add("广州");
+        options2Items_01.add("广州, 广东省，以岭南东道、广南东路得名");
         options2Items_01.add("佛山");
         options2Items_01.add("东莞");
         options2Items_01.add("阳江");
@@ -145,13 +148,19 @@ public class MainActivity extends Activity {
 
         //三级联动效果
         pvOptions.setPicker(options1Items, options2Items, options3Items, true);
+        singleOptions.setPicker(options1Items, options2Items, true);
         //设置选择的三级单位
 //        pwOptions.setLabels("省", "市", "区");
         pvOptions.setTitle("选择城市");
+        singleOptions.setTitle("选择城市");
+
         pvOptions.setCyclic(false, true, true);
+        singleOptions.setCyclic(false, true, true);
         //设置默认选中的三级项目
         //监听确定选择按钮
         pvOptions.setSelectOptions(1, 1, 1);
+        singleOptions.setSelectOptions(1, 1, 1);
+
         pvOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
 
             @Override
@@ -164,6 +173,7 @@ public class MainActivity extends Activity {
                 vMasker.setVisibility(View.GONE);
             }
         });
+
         //点击弹出选项选择器
         tvOptions.setOnClickListener(new View.OnClickListener() {
 
@@ -172,6 +182,23 @@ public class MainActivity extends Activity {
                 pvOptions.show();
             }
         });
+
+        tvOptions2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                singleOptions.show();
+            }
+        });
+
+        singleOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3) {
+                String tx = options1Items.get(options1).getPickerViewText()
+                        + options2Items.get(options1).get(option2);
+                tvOptions2.setText(tx);
+            }
+        });
+
     }
 
     public static String getTime(Date date) {

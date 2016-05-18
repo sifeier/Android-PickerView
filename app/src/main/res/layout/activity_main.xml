@@ -17,6 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
+    <TextView
+            android:id="@+id/tvOptions2"
+            android:layout_margin="50dp"
+            android:layout_below="@+id/tvOptions"
+            android:text="single"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
     <View
         android:id="@+id/vMasker"
         android:visibility="gone"
