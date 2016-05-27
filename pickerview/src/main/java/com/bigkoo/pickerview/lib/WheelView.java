@@ -61,7 +61,7 @@ public class WheelView extends View {
     int dividerColor;
 
     // 条目间距倍数
-    static final float lineSpacingMultiplier = 1.8F;
+    static final float lineSpacingMultiplier = 2.0F;
     boolean isLoop;
 
     // 第一条线Y坐标值
@@ -103,7 +103,7 @@ public class WheelView extends View {
     private int mGravity = Gravity.CENTER;
     private int drawCenterContentStart = 0;//中间选中文字开始绘制位置
     private int drawOutContentStart = 0;//非中间文字开始绘制位置
-    private static final float SCALECONTENT = 0.92F;//非中间文字则用此控制高度，压扁形成3d错觉
+    private static final float SCALECONTENT = 0.96F;//非中间文字则用此控制高度，压扁形成3d错觉
     private static final float CENTERCONTENTOFFSET = 6;//中间文字文字居中需要此偏移值
     private static final String GETPICKERVIEWTEXT = "getPickerViewText";//反射的方法名
 
@@ -125,7 +125,7 @@ public class WheelView extends View {
             textColorOut = a.getColor(R.styleable.wheelview_textColorOut, textColorOut);
             textColorCenter = a.getColor(R.styleable.wheelview_textColorCenter,textColorCenter);
             dividerColor = a.getColor(R.styleable.wheelview_dividerColor,dividerColor);
-            textSize = a.getDimensionPixelOffset(R.styleable.wheelview_textSize,textSize);
+            textSize = a.getDimensionPixelOffset(R.styleable.wheelview_textSize, textSize);
             customTextSize = a.getBoolean(R.styleable.wheelview_customTextSize, false);
         }
         initLoopView(context);
@@ -150,14 +150,14 @@ public class WheelView extends View {
         paintOuterText = new Paint();
         paintOuterText.setColor(textColorOut);
         paintOuterText.setAntiAlias(true);
-        paintOuterText.setTypeface(Typeface.MONOSPACE);
+//        paintOuterText.setTypeface(Typeface.MONOSPACE);
         paintOuterText.setTextSize(textSize);
 
         paintCenterText = new Paint();
         paintCenterText.setColor(textColorCenter);
         paintCenterText.setAntiAlias(true);
-        paintCenterText.setTextScaleX(1.1F);
-        paintCenterText.setTypeface(Typeface.MONOSPACE);
+//        paintCenterText.setTextScaleX(1.1F);
+//        paintCenterText.setTypeface(Typeface.MONOSPACE);
         paintCenterText.setTextSize(textSize);
 
         paintIndicator = new Paint();

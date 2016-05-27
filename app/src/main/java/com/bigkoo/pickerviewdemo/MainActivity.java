@@ -148,18 +148,18 @@ public class MainActivity extends Activity {
 
         //三级联动效果
         pvOptions.setPicker(options1Items, options2Items, options3Items, true);
-        singleOptions.setPicker(options1Items, options2Items, true);
+        singleOptions.setPicker(options2Items);
         //设置选择的三级单位
 //        pwOptions.setLabels("省", "市", "区");
         pvOptions.setTitle("选择城市");
         singleOptions.setTitle("选择城市");
 
         pvOptions.setCyclic(false, true, true);
-        singleOptions.setCyclic(false, true, true);
+        singleOptions.setCyclic(false);
         //设置默认选中的三级项目
         //监听确定选择按钮
         pvOptions.setSelectOptions(1, 1, 1);
-        singleOptions.setSelectOptions(1, 1, 1);
+        singleOptions.setSelectOptions(1);
 
         pvOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
 
