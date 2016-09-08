@@ -120,13 +120,13 @@ public class WheelView extends View {
         textSize = getResources().getDimensionPixelSize(R.dimen.pickerview_textsize);
 //        customTextSize = getResources().getBoolean(R.bool.pickerview_customTextSize);
         if(attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.wheelview,0,0);
-            mGravity = a.getInt(R.styleable.wheelview_gravity, Gravity.CENTER);
-            textColorOut = a.getColor(R.styleable.wheelview_textColorOut, textColorOut);
-            textColorCenter = a.getColor(R.styleable.wheelview_textColorCenter,textColorCenter);
-            dividerColor = a.getColor(R.styleable.wheelview_dividerColor,dividerColor);
-            textSize = a.getDimensionPixelOffset(R.styleable.wheelview_textSize, textSize);
-            customTextSize = a.getBoolean(R.styleable.wheelview_customTextSize, false);
+            TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.pickerview,0,0);
+            mGravity = a.getInt(R.styleable.pickerview_gravity, Gravity.CENTER);
+            textColorOut = a.getColor(R.styleable.pickerview_textColorOut, textColorOut);
+            textColorCenter = a.getColor(R.styleable.pickerview_textColorCenter,textColorCenter);
+            dividerColor = a.getColor(R.styleable.pickerview_dividerColor,dividerColor);
+            textSize = a.getDimensionPixelOffset(R.styleable.pickerview_textSize, textSize);
+            customTextSize = a.getBoolean(R.styleable.pickerview_customTextSize, false);
         }
         initLoopView(context);
     }
